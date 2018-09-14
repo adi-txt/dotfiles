@@ -51,6 +51,7 @@ Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Yggdroot/indentLine'
+Plug 'lervag/vimtex' " LaTeX support
 
 call plug#end()
 
