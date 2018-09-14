@@ -66,7 +66,7 @@ nnoremap <A-Right> :tabnext<CR>
 " Set up TAB to move between tabs
 noremap <TAB> <C-W>w
 
-" easy copy paste
+" easy copy paste between tmux panes with vim
 noremap ç "+y
 noremap √ "+p
 

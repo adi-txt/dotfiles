@@ -28,10 +28,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -45,33 +41,12 @@ case "$TERM" in
     xterm|xterm-color|*-256color) color_prompt=yes;;
 esac
 
-if [ "$color_prompt" = yes ]; then
-    if [[ ${EUID} == 0 ]] ; then
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
-    fi
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -87,9 +62,7 @@ alias l='ls -CF'
 alias ,='cd ..'
 alias n='nvim'
 alias p='python3'
-alias node='nodejs'
 alias c='clear'
-
 alias ga='git add .'
 alias gp='git push'
 alias gs='git status'
@@ -97,10 +70,8 @@ alias gd='git diff'
 alias gc='git commit -m'
 alias gpu='git pull'
 alias gb='git branch'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias vn='python3 -m venv venv'
+alias va='source venv/bin/activate'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -115,62 +86,24 @@ fi
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
 fi
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-if [ -x /usr/bin/mint-fortune ]; then
-     /usr/bin/mint-fortune
-fi
 
 # set copy/paste helper functions
 # the per1 step removes the final newline from the output
 alias pbcopy="per1 -pe 'chomp if eof' | xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
 
-# upgrade
-alias upgrade="sudo apt-get update && sudo apt-get upgrade"
-
-# get the weather
-weather() { # arg1: optional <location>
-	if [ $# -eq 0 ]; then
-		curl wttr.in/new_york
-	else
-		curl wttr.in/$1
-	fi
-}
-
 # reload bashrc
 so() {
   source ~/.bashrc
 }
 
-COLOR_BRIGHT_GREEN="\033[38;5;10m"
-COLOR_LIGHT_GREEN="\033[38;5;154m"
-COLOR_BRIGHT_BLUE="\033[38;5;115m"
 COLOR_LIGHT_BLUE="\033[38;5;86m"
-COLOR_LIGHT_RED="\033[38;5;196m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_PURPLE="\033[1;35m"
 COLOR_LIGHT_ORANGE="\033[38;5;215m"
-COLOR_BLUE="\033[34;5;115m"
-COLOR_LIGHT_CYAN="\033[1;36m"
-COLOR_WHITE="\033[0;37m"
-COLOR_GOLD="\033[38;5;142m"
-COLOR_SILVER="\033[38;5;248m"
 COLOR_RESET="\033[0m"
 
 BOLD="$(tput bold)"
 
 # Setting GIT prompt
-COLOR_CYAN=`tput setaf 6`
 COLOR_RED=`tput setaf 1`
 COLOR_GREEN=`tput setaf 2`
 c_sgr0=`tput sgr0`
@@ -210,27 +143,6 @@ PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n\n¯\_(ツ)_/¯ \[$COLOR_RESET\]"
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
 
-GREEN=`echo -e '\033[92m'`
-RED=`echo -e '\033[91m'`
-CYAN=`echo -e '\033[96m'`
-BLUE=`echo -e '\033[94m'`
-YELLOW=`echo -e '\033[93m'`
-PURPLE=`echo -e '\033[95m'`
-RESET=`echo -e '\033[0m'`
-
-load_failed="s/^Failed, modules loaded:/$RED&$RESET/;"
-load_done="s/done./$GREEN&$RESET/g;"
-double_colon="s/::/$PURPLE&$RESET/g;"
-right_arrow="s/\->/$PURPLE&$RESET/g;"
-right_arrow2="s/=>/$PURPLE&$RESET/g;"
-calc_operators="s/[+\-\/*]/$PURPLE&$RESET/g;"
-string="s/\"[^\"]*\"/$RED&$RESET/g;"
-parenthesis="s/[{}()]/$BLUE&$RESET/g;"
-left_blacket="s/\[\([^09]\)/$BLUE[$RESET\1/g;"
-right_blacket="s/\]/$BLUE&$RESET/g;"
-no_instance="s/^\s*No instance/$RED&$RESET/g;"
-interactive="s/^<[^>]*>/$RED&$RESET/g;"
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 #PYENV installation
@@ -242,26 +154,9 @@ then
   eval "$(pyenv init -)"
 fi
 
-NODENV_ROOT="$HOME/.nodenv"
-if [ -d "$NODENV_ROOT" ]
-then
-  export NODENV_ROOT
-  # Make sure it's not already in path
-  if [[ ":$PATH:" != *":$NODENV_ROOT/bin:"* ]]
-  then
-    # If $PATH exists, then add $NODENV_ROOT to $PATH with : at the end;
-    # otherwise NODENV_ROOT is the $PATH
-    PATH="${PATH:+"$PATH:"}$NODENV_ROOT/bin"
-    eval "$(nodenv init -)"
-  fi
-fi
-
 # Enabling global terminal colors on macosx
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-
-# git colors on macosx
-# git config --global color.ui true
 
 # bash completion?
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
