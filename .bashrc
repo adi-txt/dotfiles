@@ -70,8 +70,9 @@ alias gd='git diff'
 alias gc='git commit -m'
 alias gpu='git pull'
 alias gb='git branch'
-alias vn='python3 -m venv venv'
+alias vc='python3 -m venv venv'
 alias va='source venv/bin/activate'
+alias pr='pip install -r requirements.txt'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

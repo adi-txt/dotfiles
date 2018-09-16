@@ -38,7 +38,6 @@ Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
-" Plug 'davidhalter/jedi-vim' " Autocompletion
 Plug 'hdima/python-syntax' " Python syntax
 " Plug 'NLKNguyen/papercolor-theme' " Basic coloring
 Plug 'PyCQA/pyflakes' " Python testing
@@ -49,11 +48,36 @@ Plug 'godlygeek/tabular' " Markdown plugin
 Plug 'plasticboy/vim-markdown' " Markdown plugin
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'Yggdroot/indentLine'
+Plug 'hynek/vim-python-pep8-indent' "python indentation
+Plug 'Yggdroot/indentLine' "indentation
 Plug 'lervag/vimtex' " LaTeX support
 
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+
+" assuming your using vim-plug: https://github.com/junegunn/vim-plug
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+
 call plug#end()
+
+"let g:deoplete#enable_at_startup = 1
 
 "Python: highlighting
 let g:python_highlight_space_errors = 0
@@ -100,3 +124,12 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
+
+" autocompletion popup navigation
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
+
+" lightline color theme to match vim theme
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ }
