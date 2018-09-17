@@ -32,7 +32,6 @@ Here are instructions on how to utilize said files:
   - If you choose to use NeoVim, then you must move this file to 
   `.config/nvim` in your home folder, and rename the file to `init.vim`.
   Then, create a soft link to `init.vim` in your home folder as follows:
-  ``
+  ```
   ls -s .config/nvim/init.vim .vimrc
-  ``
-
+  ```
