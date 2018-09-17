@@ -28,10 +28,10 @@ Here are instructions on how to utilize said files:
   Tmux. This can be done by following instructions [here](https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340).
 
 5. `.vimrc`
-  - This needs to be placed in your home folder if you are using Vim, but if 
-  you choose to use NeoVim, then you must move this file to `.config/nvim` in 
-  your home folder, and rename the file to `init.vim`. Then, create a soft link 
-  to `init.vim` in your home folder as follows:
+  - This needs to be placed in your home folder if you are using Vim.
+  - If you choose to use NeoVim, then you must move this file to 
+  `.config/nvim` in your home folder, and rename the file to `init.vim`.
+  Then, create a soft link to `init.vim` in your home folder as follows:
   ``
   ls -s .config/nvim/init.vim .vimrc
   ``
