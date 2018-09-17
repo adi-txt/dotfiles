@@ -17,6 +17,7 @@ set nobackup "avoid swap files
   highlight CursorColumn ctermbg=248 guibg=Grey
  endif
 
+" Indentation:
 " This ensures that the indentation for Python is consistent.
 " augroup indentation_python
 "	autocmd!
@@ -30,7 +31,7 @@ augroup indentation_sr
   autocmd Filetype yaml setlocal indentkeys-=<:>
 augroup END
 
-" PLUGINS PLUGINS PLUGINS
+" Plugins:
 call plug#begin('~/.vim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
@@ -39,7 +40,6 @@ Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'hdima/python-syntax' " Python syntax
-" Plug 'NLKNguyen/papercolor-theme' " Basic coloring
 Plug 'PyCQA/pyflakes' " Python testing
 Plug 'scrooloose/syntastic' " Python code checker?
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
@@ -51,25 +51,14 @@ Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'hynek/vim-python-pep8-indent' "python indentation
 Plug 'Yggdroot/indentLine' "indentation
 Plug 'lervag/vimtex' " LaTeX support
-
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-
-" assuming your using vim-plug: https://github.com/junegunn/vim-plug
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2' "autocomplete
+Plug 'roxma/nvim-yarp' "ncm2 dependency
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANTE: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
 
+"ncm2 dependencies
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
@@ -77,11 +66,29 @@ Plug 'ncm2/ncm2-jedi'
 
 call plug#end()
 
-"let g:deoplete#enable_at_startup = 1
-
-"Python: highlighting
+" Python:
+" highlighting
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
+
+" Highlight self and cls keyword in class definitions
+augroup python_syntax
+  autocmd!
+  autocmd FileType python syn keyword pythonBuiltinObj self
+  autocmd FileType python syn keyword pythonBuiltinObj cls
+augroup end
+
+" JavaScript: plugin edits
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+" Key Mappings:
 
 " Set up Alt+Left and Alt+Right to move between tabs
 nnoremap <A-Left> :tabprevious<CR>
@@ -90,19 +97,15 @@ nnoremap <A-Right> :tabnext<CR>
 " Set up TAB to move between tabs
 noremap <TAB> <C-W>w
 
-" easy copy paste between tmux panes with vim
+" Easy copy paste between tmux panes with vim
 noremap ç "+y
 noremap √ "+p
 
-" Python: Highlight self and cls keyword in class definitions
-augroup python_syntax
-  autocmd!
-  autocmd FileType python syn keyword pythonBuiltinObj self
-  autocmd FileType python syn keyword pythonBuiltinObj cls
-augroup end
+" Autocompletion popup navigation
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 
-" Syntax: select global syntax scheme
-" Make sure this is at end of section
+" Seoul256 Settings:
 try
   set t_Co=256 " says terminal has 256 colors
   " set background=dark
@@ -116,20 +119,8 @@ try
 catch
 endtry
 
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
-
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
-
-" autocompletion popup navigation
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
-
-" lightline color theme to match vim theme
+" Lightline Settings:
+" Color theme to match vim theme
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
