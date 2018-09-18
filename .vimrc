@@ -62,11 +62,13 @@ set completeopt=noinsert,menuone,noselect
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
+" Plug 'ncm2/ncm2-jedi'
 
 call plug#end()
 
+
 " Python:
+
 " highlighting
 let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
