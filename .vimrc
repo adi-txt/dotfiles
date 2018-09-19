@@ -53,6 +53,7 @@ Plug 'Yggdroot/indentLine' "indentation
 Plug 'lervag/vimtex' " LaTeX support
 Plug 'ncm2/ncm2' "autocomplete
 Plug 'roxma/nvim-yarp' "ncm2 dependency
+Plug 'junegunn/rainbow_parentheses.vim' " lol
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -66,6 +67,23 @@ Plug 'ncm2/ncm2-path'
 
 call plug#end()
 
+" Search result highlighting
+set incsearch
+augroup sroeca_incsearch_highlight
+  autocmd!
+  autocmd CmdlineEnter /,\? :set hlsearch
+  autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+
+" Rainbow Parentheses:
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+augroup rainbow_settings
+  " Section to turn on rainbow parentheses
+  autocmd!
+  autocmd BufEnter,BufRead * :RainbowParentheses
+  autocmd BufEnter,BufRead *.html,*.css,*.jsx,*.js :RainbowParentheses!
+augroup END
 
 " Python:
 
