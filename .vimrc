@@ -67,7 +67,7 @@ Plug 'ncm2/ncm2-path'
 
 call plug#end()
 
-" Search result highlighting
+" Search result highlighting courtesy of @pappasam
 set incsearch
 augroup sroeca_incsearch_highlight
   autocmd!
