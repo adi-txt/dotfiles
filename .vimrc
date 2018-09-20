@@ -117,6 +117,9 @@ nnoremap <A-Right> :tabnext<CR>
 " Set up TAB to move between tabs
 noremap <TAB> <C-W>w
 
+" Set up control+right to unfold all folds
+noremap <C-z> zO
+
 " Easy copy paste between tmux panes with vim
 noremap ç "+y
 noremap √ "+p
