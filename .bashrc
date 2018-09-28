@@ -74,6 +74,7 @@ alias vc='python3 -m venv venv'
 alias va='source venv/bin/activate'
 alias pr='pip install -r requirements.txt'
 alias pu='pip install --upgrade pip'
+alias chrome='open -a "Google Chrome"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
