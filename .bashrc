@@ -179,6 +179,5 @@ git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
 # Make sure you're also exporting PATH somewhere...
-# export PATH
 export PATH=~/.local/bin:$PATH
 
