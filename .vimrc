@@ -54,6 +54,7 @@ Plug 'lervag/vimtex' " LaTeX support
 Plug 'ncm2/ncm2' "autocomplete
 Plug 'roxma/nvim-yarp' "ncm2 dependency
 Plug 'junegunn/rainbow_parentheses.vim' " lol
+Plug 'scrooloose/nerdtree' " file system explorer
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -64,6 +65,11 @@ Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
 " Plug 'ncm2/ncm2-jedi'
+
+" nerdtree auto-open when no file is specified with vim
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 
 call plug#end()
 
@@ -123,6 +129,9 @@ noremap <C-z> zO
 " Easy copy paste between tmux panes with vim
 noremap ç "+y
 noremap √ "+p
+
+" open NERDTree with Ctrl+n
+map <C-n> :NERDTreeToggle<CR>
 
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
