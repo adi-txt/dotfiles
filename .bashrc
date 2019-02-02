@@ -81,6 +81,7 @@ alias vd='deactivate'
 alias pr='pip install -r requirements.txt'
 alias pu='pip install --upgrade pip'
 alias chrome='open -a "Google Chrome"'
+alias pepify='autopep8 --in-place --aggressive --aggressive'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
