@@ -74,6 +74,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gc='git commit -m'
 alias gpu='git pull'
+alias gdry='git fetch --dry-run'
 alias gb='git branch'
 alias gl='git log'
 alias vc='python3 -m venv venv'
@@ -83,6 +84,8 @@ alias pr='pip install -r requirements.txt'
 alias pu='pip install --upgrade pip'
 alias chrome='open -a "Google Chrome"'
 alias pepify='autopep8 --in-place --aggressive --aggressive'
+alias todo='n ~/repos/notes/thingstodo.md'
+alias journal='n ~/repos/notes/.journal/2019/'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

@@ -46,6 +46,7 @@ Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
 Plug 'pangloss/vim-javascript' " Vim JS
 Plug 'godlygeek/tabular' " Markdown plugin
 Plug 'plasticboy/vim-markdown' " Markdown plugin
+Plug 'junegunn/limelight.vim' " highlight text
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'hynek/vim-python-pep8-indent' "python indentation
@@ -55,7 +56,7 @@ Plug 'ncm2/ncm2' "autocomplete
 Plug 'roxma/nvim-yarp' "ncm2 dependency
 Plug 'junegunn/rainbow_parentheses.vim' " lol
 Plug 'scrooloose/nerdtree' " file system explorer
-Plug 'pappasam/vim-black' " black python formatting 
+Plug 'pappasam/vim-black' " black python formatting
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -71,6 +72,9 @@ Plug 'ncm2/ncm2-path'
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
+" Goyo Limelight integration
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 call plug#end()
 
@@ -132,7 +136,10 @@ noremap ç "+y
 noremap √ "+p
 
 " open NERDTree with Ctrl+n
-map <C-n> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
+
+" open Goyo mode
+map <C-g> :Goyo <CR> 
 
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -141,9 +148,7 @@ inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 " Seoul256 Settings:
 try
   set t_Co=256 " says terminal has 256 colors
-  " set background=dark
-  " colorscheme PaperColor
-  " " Unified color scheme (default: dark)
+  " Unified color scheme (default: dark)
   let g:seoul256_background = 235
   colo seoul256
   " Switch
