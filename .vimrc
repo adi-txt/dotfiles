@@ -56,7 +56,7 @@ Plug 'ncm2/ncm2' "autocomplete
 Plug 'roxma/nvim-yarp' "ncm2 dependency
 Plug 'junegunn/rainbow_parentheses.vim' " lol
 Plug 'scrooloose/nerdtree' " file system explorer
-Plug 'pappasam/vim-black' " black python formatting
+Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -139,7 +139,7 @@ noremap √ "+p
 map <C-t> :NERDTreeToggle<CR>
 
 " open Goyo mode
-map <C-g> :Goyo <CR> 
+map <C-g> :Goyo <CR>
 
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
