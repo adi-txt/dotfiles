@@ -1,5 +1,5 @@
-" set tabstop=2 "tab length
-" set softtabstop=2 "tab length
+set tabstop=2 "tab length
+set softtabstop=2 "tab length
 " set shiftwidth=2 "shift length
 set showtabline=2 "show tab dif
 set expandtab "spaces are tabs
@@ -41,7 +41,7 @@ Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'hdima/python-syntax' " Python syntax
 Plug 'PyCQA/pyflakes' " Python testing
-Plug 'scrooloose/syntastic' " Python code checker?
+Plug 'vim-syntastic/syntastic' " Syntax checker
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
 Plug 'pangloss/vim-javascript' " Vim JS
 Plug 'godlygeek/tabular' " Markdown plugin
@@ -57,6 +57,11 @@ Plug 'roxma/nvim-yarp' "ncm2 dependency
 Plug 'junegunn/rainbow_parentheses.vim' " lol
 Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
+Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
+" Plug 'jimhester/lintr' "R linter
+Plug 'w0rp/ale' " Asynchronous linter
+" Plug 'jalvesaq/Nvim-R' " R for neovim
+
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -157,8 +162,13 @@ try
 catch
 endtry
 
+" Lintr for R settings:
+" let g:syntastic_enable_r_lintr_checker = 1
+" let g:syntastic_r_checkers = ['lintr']
+
 " Lightline Settings:
 " Color theme to match vim theme
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
+
