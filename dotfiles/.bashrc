@@ -55,7 +55,7 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
+# some more aliases
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
@@ -86,16 +86,7 @@ alias brave='open -a "Brave Browser"'
 alias pepify='autopep8 --in-place --aggressive --aggressive'
 alias todo='n ~/repos/notes/thingstodo.md'
 alias journal='n ~/repos/notes/.journal/2019/'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
+alias today='date +"%A, %B %-d, %Y"'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
@@ -172,7 +163,7 @@ fi
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# bash completion?
+# bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 # git diff configuration
