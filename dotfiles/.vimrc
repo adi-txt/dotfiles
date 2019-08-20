@@ -119,7 +119,7 @@ noremap <C-z> zO
 noremap ç "+y
 noremap √ "+p
 
-" open NERDTree with Ctrl+n
+" open NERDTree with Ctrl+t
 map <C-t> :NERDTreeToggle<CR>
 
 " open Goyo mode
@@ -140,10 +140,6 @@ try
 
 catch
 endtry
-
-" Lintr for R settings:
-" let g:syntastic_enable_r_lintr_checker = 1
-" let g:syntastic_r_checkers = ['lintr']
 
 " Lightline Settings:
 " Color theme to match vim theme
