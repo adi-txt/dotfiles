@@ -7,13 +7,6 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: system_setup
-system_setup:  ## Set up OS with an ansible playbook
-	ansible-playbook \
-		--ask-become-pass \
-		--inventory=inventory/localhost \
-		$@.yml
-
 .PHONY: dotfiles
 dotfiles: config_directories ## Place dotfiles in home folder, replace all owned by stow
 	-mkdir -p $(HOME_DIRS_MKDIR)
