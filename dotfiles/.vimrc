@@ -17,13 +17,6 @@ set nobackup "avoid swap files
   highlight CursorColumn ctermbg=248 guibg=Grey
  endif
 
-" Indentation:
-" This ensures that the indentation for Python is consistent.
-" augroup indentation_python
-"	autocmd!
-"	autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=8
-" augroup END
-
 augroup indentation_sr
   autocmd!
   autocmd Filetype * setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=8
@@ -32,7 +25,7 @@ augroup indentation_sr
 augroup END
 
 " Plugins:
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
@@ -52,26 +45,12 @@ Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'hynek/vim-python-pep8-indent' "python indentation
 Plug 'Yggdroot/indentLine' "indentation
 Plug 'lervag/vimtex' " LaTeX support
-Plug 'ncm2/ncm2' "autocomplete
-Plug 'roxma/nvim-yarp' "ncm2 dependency
 Plug 'junegunn/rainbow_parentheses.vim' " lol
 Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
-" Plug 'jimhester/lintr' "R linter
 Plug 'w0rp/ale' " Asynchronous linter
-" Plug 'jalvesaq/Nvim-R' " R for neovim
 
-
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-"ncm2 dependencies
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-jedi'
 
 " nerdtree auto-open when no file is specified with vim
 autocmd StdinReadPre * let s:std_in=1
@@ -154,7 +133,7 @@ inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 try
   set t_Co=256 " says terminal has 256 colors
   " Unified color scheme (default: dark)
-  let g:seoul256_background = 235
+  let g:seoul256_background = 233
   colo seoul256
   " Switch
   set background=dark
