@@ -51,6 +51,18 @@ Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 Plug 'w0rp/ale' " Asynchronous linter
 
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+
+call plug#end()
+
+"enable deoplete
+let g:deoplete#enable_at_startup = 1
 
 " nerdtree auto-open when no file is specified with vim
 autocmd StdinReadPre * let s:std_in=1
@@ -59,8 +71,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Goyo Limelight integration
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-
-call plug#end()
 
 " Search result highlighting courtesy of @pappasam
 set incsearch
@@ -115,9 +125,13 @@ noremap <TAB> <C-W>w
 " Set up control+right to unfold all folds
 noremap <C-z> zO
 
-" Easy copy paste between tmux panes with vim
+" Easy copy paste between tmux panes with vim for Mac
 noremap ç "+y
 noremap √ "+p
+
+" Trying copy paste for Linux
+map <A-c> "+y<CR>
+map <A-v> "+p<CR>
 
 " open NERDTree with Ctrl+t
 map <C-t> :NERDTreeToggle<CR>
@@ -127,7 +141,7 @@ map <C-g> :Goyo <CR>
 
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
+" inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 
 " Seoul256 Settings:
 try
