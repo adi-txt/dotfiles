@@ -103,6 +103,14 @@ so() {
   source ~/.bashrc
 }
 
+# lss() {
+#   local dir="."
+#   if [! -z "$1"]; then
+#     dir=$1
+#   fi
+#   find $dir -maxdepth 1 -type l -ls
+# }
+
 COLOR_LIGHT_BLUE="\033[38;5;86m"
 COLOR_LIGHT_ORANGE="\033[38;5;215m"
 COLOR_RESET="\033[0m"
@@ -180,6 +188,10 @@ git config --global color.diff.commit     "yellow bold"
 git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
+
+eval "$(nodenv init -)"
+
+export PATH="$HOME/.nodenv/bin:$PATH"
 
 # Make sure you're also exporting PATH somewhere...
 export PATH=~/.local/bin:$PATH

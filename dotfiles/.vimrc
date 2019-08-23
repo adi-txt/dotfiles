@@ -50,6 +50,7 @@ Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 Plug 'w0rp/ale' " Asynchronous linter
+Plug 'evanleck/vim-svelte' " svelte highlights
 
 " if has('nvim')
 "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
