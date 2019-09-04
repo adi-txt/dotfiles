@@ -88,6 +88,7 @@ alias pepify='autopep8 --in-place --aggressive --aggressive'
 alias todo='n ~/repos/notes/thingstodo.md'
 alias journal='n ~/repos/notes/.journal/2019/'
 alias today='date +"%A, %B %-d, %Y"'
+alias please='sudo'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
@@ -189,7 +190,7 @@ git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
-eval "$(nodenv init -)"
+# eval "$(nodenv init -)"
 
 export PATH="$HOME/.nodenv/bin:$PATH"
 
