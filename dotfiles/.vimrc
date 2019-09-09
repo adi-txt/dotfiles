@@ -144,6 +144,21 @@ map <C-g> :Goyo <CR>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 
+" We'll see how long this lasts
+" Stickler mode
+" nnoremap <Up> <nop>
+" nnoremap <Down> <nop>
+" nnoremap <Left> <nop>
+" nnoremap <Right> <nop>
+" inoremap <Up> <nop>
+" inoremap <Down> <nop>
+" inoremap <Left> <nop>
+" inoremap <Right> <nop>
+" vnoremap <Up> <nop>
+" vnoremap <Down> <nop>
+" vnoremap <Left> <nop>
+" vnoremap <Right> <nop>
+
 " Seoul256 Settings:
 try
   set t_Co=256 " says terminal has 256 colors

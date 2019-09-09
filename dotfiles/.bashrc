@@ -92,6 +92,8 @@ alias todo='n ~/repos/notes/thingstodo.md'
 alias journal='n ~/repos/notes/.journal/2019/'
 alias today='date +"%A, %B %-d, %Y"'
 alias please='sudo'
+alias vpnup='nmcli c up aws'
+alias vpndown='nmcli c down aws'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
@@ -200,3 +202,7 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 # Make sure you're also exporting PATH somewhere...
 export PATH=~/.local/bin:$PATH
 
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
