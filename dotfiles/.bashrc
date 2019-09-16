@@ -21,7 +21,6 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=50000
 
-# why is this here?
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
@@ -77,9 +76,6 @@ alias gs='git status'
 alias gd='git diff'
 alias gc='git commit -m'
 alias gpu='git pull'
-alias gdry='git fetch --dry-run'
-alias gb='git branch'
-alias gl='git log'
 alias go='git checkout'
 alias vc='python3 -m venv venv'
 alias va='source venv/bin/activate'
@@ -90,7 +86,6 @@ alias brave='open -a "Brave Browser"'
 alias pepify='autopep8 --in-place --aggressive --aggressive'
 alias todo='n ~/repos/notes/thingstodo.md'
 alias journal='n ~/repos/notes/.journal/2019/'
-alias today='date +"%A, %B %-d, %Y"'
 alias please='sudo'
 alias vpnup='nmcli c up aws'
 alias vpndown='nmcli c down aws'
@@ -109,25 +104,17 @@ so() {
   source ~/.bashrc
 }
 
-# lss() {
-#   local dir="."
-#   if [! -z "$1"]; then
-#     dir=$1
-#   fi
-#   find $dir -maxdepth 1 -type l -ls
-# }
-
+############################################
+# Colors
 COLOR_LIGHT_BLUE="\033[38;5;86m"
 COLOR_LIGHT_ORANGE="\033[38;5;215m"
 COLOR_RESET="\033[0m"
-
 BOLD="$(tput bold)"
-
-# Setting GIT prompt
 COLOR_RED=`tput setaf 1`
 COLOR_GREEN=`tput setaf 2`
 c_sgr0=`tput sgr0`
 
+# helper function for branch color
 branch_color() {
     if git rev-parse --git-dir >/dev/null 2>&1
     then
@@ -144,6 +131,7 @@ branch_color() {
     echo -n $color
 }
 
+# helper function to display current branch
 git_branch() {
     if git rev-parse --git-dir >/dev/null 2>&1
     then
@@ -159,9 +147,47 @@ PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_ORANGE\]\w "
 PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
 PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\u"
 PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n\n🤔🤔🤔  \[$COLOR_RESET\]"
-
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
+
+#######################
+
+# Bash-it Brunton theme to be edited at some point
+
+# SCM_THEME_PROMPT_PREFIX=""
+# SCM_THEME_PROMPT_SUFFIX=""
+#
+# SCM_THEME_PROMPT_DIRTY=" ${bold_red}✗${normal}"
+# SCM_THEME_PROMPT_CLEAN=" ${bold_green}✓${normal}"
+# SCM_GIT_CHAR="${bold_green}±${normal}"
+# SCM_SVN_CHAR="${bold_cyan}⑆${normal}"
+# SCM_HG_CHAR="${bold_red}☿${normal}"
+#
+# is_vim_shell() {
+# 	if [ ! -z "$VIMRUNTIME" ]
+# 	then
+# 		echo "[${cyan}vim shell${normal}]"
+# 	fi
+# }
+#
+# scm_prompt() {
+# 	CHAR=$(scm_char)
+# 	if [ $CHAR = $SCM_NONE_CHAR ]
+# 	then
+# 		return
+# 	else
+# 		echo " $(scm_char) (${white}$(scm_prompt_info)${normal})"
+# 	fi
+# }
+#
+# prompt() {
+#   PS1="${white}${background_blue} \u${normal}${background_blue}@${red}${background_blue}\h $(clock_prompt) ${reset_color}${normal} $(battery_charge)\n${bold_black}${background_white} \w ${normal}$(scm_prompt)$(is_vim_shell)\n${white}>${normal} "
+# }
+#
+# THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"$blue$background_white"}
+# THEME_CLOCK_FORMAT=${THEME_CLOCK_FORMAT:-" %H:%M:%S"}
+#
+# safe_append_prompt_command prompt
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -195,14 +221,9 @@ git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
 
-# eval "$(nodenv init -)"
-
-export PATH="$HOME/.nodenv/bin:$PATH"
-
 # Make sure you're also exporting PATH somewhere...
+export PATH="$HOME/.nodenv/bin:$PATH"
 export PATH=~/.local/bin:$PATH
 
-
 . $HOME/.asdf/asdf.sh
-
 . $HOME/.asdf/completions/asdf.bash
