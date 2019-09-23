@@ -75,6 +75,7 @@ alias gpo='git push origin'
 alias gs='git status'
 alias gd='git diff'
 alias gc='git commit -m'
+alias gl='git lgr'
 alias gpu='git pull'
 alias go='git checkout'
 alias vc='python3 -m venv venv'
@@ -89,6 +90,8 @@ alias journal='n ~/repos/notes/.journal/2019/'
 alias please='sudo'
 alias vpnup='nmcli c up aws'
 alias vpndown='nmcli c down aws'
+alias dockerdestroy='docker system prune -a; docker rmi $(docker images -a -q)'
+alias b='bpython3'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive

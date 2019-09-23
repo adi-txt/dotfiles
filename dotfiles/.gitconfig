@@ -11,6 +11,7 @@
   br = branch
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-file -t
+  lgr = log --oneline --graph --decorate
   dump = cat-file -p
 [color]
 	ui = true
