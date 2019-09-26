@@ -92,6 +92,8 @@ alias vpnup='nmcli c up aws'
 alias vpndown='nmcli c down aws'
 alias dockerdestroy='docker system prune -a; docker rmi $(docker images -a -q)'
 alias b='bpython3'
+alias notes='cd ~/repos/personal/kepler-notes/2019/projects'
+alias rearena='cd ~/repos/personal/re.are.na; source venv/bin/activate; make email'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
