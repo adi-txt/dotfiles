@@ -53,18 +53,13 @@ Plug 'w0rp/ale' " Asynchronous linter
 Plug 'evanleck/vim-svelte' " svelte highlights
 Plug 'rust-lang/rust.vim' " Rust highlights
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
+Plug 'pappasam/vim-filetype-formatter' " text formatter
 
 call plug#end()
 
-"enable deoplete
-let g:deoplete#enable_at_startup = 1
+let g:vim_filetype_formatter_commands = {
+  \ 'text': 'poetry run text-formatter',
+  \ }
 
 " nerdtree auto-open when no file is specified with vim
 autocmd StdinReadPre * let s:std_in=1
@@ -80,6 +75,11 @@ augroup sroeca_incsearch_highlight
   autocmd!
   autocmd CmdlineEnter /,\? :set hlsearch
   autocmd CmdlineLeave /,\? :set nohlsearch
+augroup END
+
+augroup Markdown
+  autocmd!
+  autocmd Filetype markdown set wrap
 augroup END
 
 " Rainbow Parentheses:
@@ -130,6 +130,10 @@ noremap <C-z> zO
 " Easy copy paste between tmux panes with vim for Mac
 noremap ç "+y
 noremap √ "+p
+
+" FiletypeFormat: remap leader f to do filetype formatting
+nnoremap <leader>f :FiletypeFormat<cr>
+vnoremap <leader>f :FiletypeFormat<cr>
 
 " Trying copy paste for Linux
 map <A-c> "+y<CR>
