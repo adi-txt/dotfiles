@@ -12,10 +12,10 @@ set noswapfile "avoid swap files
 set nobackup "avoid swap files
 
 " Set column to light grey at 80 characters
- if (exists('+colorcolumn'))
+if (exists('+colorcolumn'))
   set colorcolumn=80
   highlight CursorColumn ctermbg=248 guibg=Grey
- endif
+endif
 
 augroup indentation_sr
   autocmd!
@@ -27,6 +27,8 @@ augroup END
 " Plugins:
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
+Plug 'leafgarland/typescript-vim' " syntax for typescript in Vim
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
 Plug 'mhinz/vim-startify' " Fancy start screen
@@ -52,14 +54,46 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for':
 Plug 'w0rp/ale' " Asynchronous linter
 Plug 'evanleck/vim-svelte' " svelte highlights
 Plug 'rust-lang/rust.vim' " Rust highlights
-
 Plug 'pappasam/vim-filetype-formatter' " text formatter
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
+
 let g:vim_filetype_formatter_commands = {
-  \ 'text': 'poetry run text-formatter',
-  \ }
+      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ }
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " nerdtree auto-open when no file is specified with vim
 autocmd StdinReadPre * let s:std_in=1
@@ -69,9 +103,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-" Search result highlighting courtesy of @pappasam
+" Search result highlighting
 set incsearch
-augroup sroeca_incsearch_highlight
+augroup incsearch_highlight
   autocmd!
   autocmd CmdlineEnter /,\? :set hlsearch
   autocmd CmdlineLeave /,\? :set nohlsearch
@@ -80,6 +114,11 @@ augroup END
 augroup Markdown
   autocmd!
   autocmd Filetype markdown set wrap
+augroup END
+
+augroup tsx_recognition
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 augroup END
 
 " Rainbow Parentheses:
@@ -114,6 +153,7 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
+
 
 " Key Mappings:
 
