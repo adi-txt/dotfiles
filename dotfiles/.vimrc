@@ -154,6 +154,9 @@ augroup javascript_folding
     au FileType javascript setlocal foldmethod=syntax
 augroup END
 
+" Commands:
+command! W :w " make it easier to save
+command! Wq :wq " make it easier to save and quit
 
 " Key Mappings:
 
