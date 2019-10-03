@@ -1,15 +1,17 @@
 set tabstop=2 "tab length
 set softtabstop=2 "tab length
-" set shiftwidth=2 "shift length
+set shiftwidth=2 "shift length
 set showtabline=2 "show tab dif
 set expandtab "spaces are tabs
 set number "line numbers
 set cursorline "highlight current line
 set nowrap "remove auto wrap
 set hlsearch "highlight search
-set incsearch "highlight search
+set incsearch "search as characters are entered
 set noswapfile "avoid swap files
 set nobackup "avoid swap files
+set showmatch "highlight matching
+
 
 " Set column to light grey at 80 characters
 if (exists('+colorcolumn'))
