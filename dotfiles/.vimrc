@@ -39,7 +39,6 @@ augroup END
 " Plugins:
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'leafgarland/typescript-vim' " syntax for typescript in Vim
 Plug 'peitalin/vim-jsx-typescript' " syntax highlighting for jsx in typescript
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
@@ -51,6 +50,7 @@ Plug 'hdima/python-syntax' " Python syntax
 Plug 'PyCQA/pyflakes' " Python testing
 Plug 'vim-syntastic/syntastic' " Syntax checker
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
+Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'pangloss/vim-javascript' " Vim JS
 Plug 'godlygeek/tabular' " Markdown plugin
 Plug 'plasticboy/vim-markdown' " Markdown plugin
@@ -69,7 +69,6 @@ Plug 'evanleck/vim-svelte' " svelte highlights
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'pappasam/vim-filetype-formatter' " text formatter
 Plug 'dkarter/bullets.vim' " Bullets in markdown
-Plug 'posva/vim-vue' " vue syntax highlighting
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
