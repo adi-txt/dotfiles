@@ -196,6 +196,7 @@ augroup END
 " Commands:
 command! W :w " make it easier to save
 command! Wq :wq " make it easier to save and quit
+command! Q :q " make it easier to quit
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
