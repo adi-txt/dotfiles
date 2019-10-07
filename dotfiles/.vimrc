@@ -1,3 +1,4 @@
+syntax on
 set tabstop=2 "tab length
 set softtabstop=2 "tab length
 set shiftwidth=2 "shift length
@@ -11,6 +12,7 @@ set incsearch "search as characters are entered
 set noswapfile "avoid swap files
 set nobackup "avoid swap files
 set showmatch "highlight matching
+set textwidth=80 " set text width to be no larger than 80
 
 " Set column to light grey at 80 characters
 if (exists('+colorcolumn'))
@@ -38,7 +40,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins:
 call plug#begin('~/.local/share/nvim/plugged')
-
 Plug 'leafgarland/typescript-vim' " syntax for typescript in Vim
 Plug 'peitalin/vim-jsx-typescript' " syntax highlighting for jsx in typescript
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
@@ -263,3 +264,8 @@ endtry
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Markdown Settings:
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
