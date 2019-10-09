@@ -1,17 +1,17 @@
 syntax on
-set tabstop=2 "tab length
-set softtabstop=2 "tab length
-set shiftwidth=2 "shift length
-set showtabline=2 "show tab dif
-set expandtab "spaces are tabs
-set number "line numbers
-set cursorline "highlight current line
-set nowrap "remove auto wrap
-set hlsearch "highlight search
-set incsearch "search as characters are entered
-set noswapfile "avoid swap files
-set nobackup "avoid swap files
-set showmatch "highlight matching
+set tabstop=2 " tab length
+set softtabstop=2 " tab length
+set shiftwidth=2 " shift length
+set showtabline=2 " show tab dif
+set expandtab " spaces are tabs
+set number " line numbers
+set cursorline " highlight current line
+set nowrap " remove auto wrap
+set hlsearch " highlight search
+set incsearch " search as characters are entered
+set noswapfile " avoid swap files
+set nobackup " avoid swap files
+set showmatch " highlight matching
 set textwidth=80 " set text width to be no larger than 80
 
 " Set column to light grey at 80 characters
@@ -20,7 +20,7 @@ if (exists('+colorcolumn'))
   highlight CursorColumn ctermbg=248 guibg=Grey
 endif
 
-" indentation settings
+" Indentation settings
 augroup indentation
   autocmd!
   autocmd Filetype * setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=8
@@ -40,32 +40,48 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins:
 call plug#begin('~/.local/share/nvim/plugged')
+
+" Formatting
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
+Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
+Plug 'hynek/vim-python-pep8-indent' "python indentation
+Plug 'Yggdroot/indentLine' "indentation
+Plug 'w0rp/ale' " Asynchronous linter
+Plug 'pappasam/vim-filetype-formatter' " text formatter
+Plug 'machakann/vim-highlightedyank' " make yanked region apparent
+
+" Other
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'PyCQA/pyflakes' " Python testing
-Plug 'vim-syntastic/syntastic' " Syntax checker
-Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
-Plug 'pangloss/vim-javascript' " Vim JS
+Plug 'scrooloose/nerdtree' " file system explorer
+
+" Markdown plugins
 Plug 'godlygeek/tabular' " Markdown plugin
 Plug 'plasticboy/vim-markdown' " Markdown plugin
+Plug 'dkarter/bullets.vim' " Bullets in markdown
+Plug 'iamcco/markdown-preview.nvim', {
+      \ 'do': ':call mkdp#util#install()',
+      \ 'for': 'markdown',
+      \ 'on': 'MarkdownPreview'
+      \ }
+
+" Shoutout @junegunn
 Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
-Plug 'hynek/vim-python-pep8-indent' "python indentation
-Plug 'Yggdroot/indentLine' "indentation
-Plug 'lervag/vimtex' " LaTeX support
 Plug 'junegunn/rainbow_parentheses.vim' " lol
-Plug 'scrooloose/nerdtree' " file system explorer
-Plug 'machakann/vim-highlightedyank' " make yanked region apparent
-Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
-Plug 'w0rp/ale' " Asynchronous linter
-Plug 'pappasam/vim-filetype-formatter' " text formatter
-Plug 'dkarter/bullets.vim' " Bullets in markdown
+
+" Plant UML
 Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
 Plug 'tyru/open-browser.vim' " Direct dependency of plantuml-previewer.vim
+
+" Syntax highlighting
+Plug 'vim-syntastic/syntastic' " Syntax checker
+Plug 'pangloss/vim-javascript' " JS syntax highlighting
+Plug 'lervag/vimtex' " LaTeX syntax highlighting
 Plug 'hdima/python-syntax' " Python syntax highlighting
 Plug 'evanleck/vim-svelte' " Svelte syntax highlighting
 Plug 'rust-lang/rust.vim' " Rust syntax highlighting
@@ -74,11 +90,12 @@ Plug 'chr4/nginx.vim' " Nginx syntax highlighting
 Plug 'maxmellon/vim-jsx-pretty' " jsx syntax highlighting
 Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript' " Jsx in Typescript syntax highlighting
+
+" Autocompletion
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -92,19 +109,19 @@ call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim filetype formatter settings
+" Vim filetype formatter settings
 let g:vim_filetype_formatter_commands = {
       \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ }
 
-" Required for operations modifying multiple buffers like rename.
+" Required for operations modifying multiple buffers like rename
 set hidden
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" language client settings
+" Language client settings
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
@@ -216,7 +233,6 @@ command! Q :q " make it easier to quit
 command! PreviewCmd call _Preview() " make it easier to preview files
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings:
 " Set up Alt+Left and Alt+Right to move between tabs
@@ -281,6 +297,7 @@ try
 catch
 endtry
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline Settings:
 " Color theme to match vim theme
@@ -288,7 +305,10 @@ let g:lightline = {
       \ 'colorscheme': 'seoul256',
       \ }
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Markdown Settings:
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
+
+
