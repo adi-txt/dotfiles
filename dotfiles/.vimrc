@@ -70,6 +70,8 @@ Plug 'evanleck/vim-svelte' " svelte highlights
 Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'pappasam/vim-filetype-formatter' " text formatter
 Plug 'dkarter/bullets.vim' " Bullets in markdown
+Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
+Plug 'aklt/plantuml-syntax' " Syntax highlighting for Plant UML
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -191,12 +193,26 @@ augroup javascript_folding
     au FileType javascript setlocal foldmethod=syntax
 augroup END
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Preview wrapper function for Plant UML and Markdown:
+function! _Preview()
+  if &filetype ==? 'plantuml'
+    exec 'PlantumlOpen'
+  elseif &filetype ==? 'markdown'
+    exec 'MarkdownPreview'
+  else
+    exec 'Preview'
+  endif
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commands:
 command! W :w " make it easier to save
 command! Wq :wq " make it easier to save and quit
 command! Q :q " make it easier to quit
+command! Preview call _Preview() " make it easier to preview files
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -246,6 +262,10 @@ inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " vnoremap <Down> <nop>
 " vnoremap <Left> <nop>
 " vnoremap <Right> <nop>
+
+" Set up preview command
+nmap <silent><leader>p :Preview<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Seoul256 Settings:
