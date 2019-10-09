@@ -40,22 +40,18 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins:
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'leafgarland/typescript-vim' " syntax for typescript in Vim
-Plug 'peitalin/vim-jsx-typescript' " syntax highlighting for jsx in typescript
-Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace
+Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
-Plug 'hdima/python-syntax' " Python syntax
 Plug 'PyCQA/pyflakes' " Python testing
 Plug 'vim-syntastic/syntastic' " Syntax checker
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
-Plug 'maxmellon/vim-jsx-pretty' " jsx highlights
 Plug 'pangloss/vim-javascript' " Vim JS
 Plug 'godlygeek/tabular' " Markdown plugin
 Plug 'plasticboy/vim-markdown' " Markdown plugin
-Plug 'junegunn/limelight.vim' " highlight text
+Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'hynek/vim-python-pep8-indent' "python indentation
@@ -66,12 +62,18 @@ Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 Plug 'w0rp/ale' " Asynchronous linter
-Plug 'evanleck/vim-svelte' " svelte highlights
-Plug 'rust-lang/rust.vim' " Rust highlights
 Plug 'pappasam/vim-filetype-formatter' " text formatter
 Plug 'dkarter/bullets.vim' " Bullets in markdown
 Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
-Plug 'aklt/plantuml-syntax' " Syntax highlighting for Plant UML
+Plug 'tyru/open-browser.vim' " Direct dependency of plantuml-previewer.vim
+Plug 'hdima/python-syntax' " Python syntax highlighting
+Plug 'evanleck/vim-svelte' " Svelte syntax highlighting
+Plug 'rust-lang/rust.vim' " Rust syntax highlighting
+Plug 'aklt/plantuml-syntax' " Plant UML syntax highlighting
+Plug 'chr4/nginx.vim' " Nginx syntax highlighting
+Plug 'maxmellon/vim-jsx-pretty' " jsx syntax highlighting
+Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
+Plug 'peitalin/vim-jsx-typescript' " Jsx in Typescript syntax highlighting
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -211,7 +213,7 @@ endfunction
 command! W :w " make it easier to save
 command! Wq :wq " make it easier to save and quit
 command! Q :q " make it easier to quit
-command! Preview call _Preview() " make it easier to preview files
+command! PreviewCmd call _Preview() " make it easier to preview files
 
 
 
@@ -264,7 +266,7 @@ inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " vnoremap <Right> <nop>
 
 " Set up preview command
-nmap <silent><leader>p :Preview<CR>
+nmap <silent><leader>p :PreviewCmd<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
