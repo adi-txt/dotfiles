@@ -230,7 +230,7 @@ endfunction
 command! W :w " make it easier to save
 command! Wq :wq " make it easier to save and quit
 command! Q :q " make it easier to quit
-command! PreviewCmd call _Preview() " make it easier to preview files
+command! Preview call _Preview() " make it easier to preview files
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
