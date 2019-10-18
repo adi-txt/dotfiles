@@ -326,3 +326,6 @@ let $FZF_DEFAULT_OPTS = '-m --bind ctrl-a:select-all,ctrl-d:deselect-all '
       \ . '(bat --style=numbers --color=always {} || cat {})'
       \ . '2> /dev/null | head -500"'
 
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+let g:fzf_layout = { 'down': '~40%' }
+

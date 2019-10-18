@@ -98,7 +98,6 @@ alias b='bpython3'
 alias notes='cd ~/repos/personal/kepler-notes/2019/projects'
 alias rearena='cd ~/repos/personal/re.are.na; source venv/bin/activate; make email'
 alias bat='bat -n'
-alias fn='n -o `fzf`'
 alias fh='history | fzf'
 
 if [ -f ~/.bash/sensitive ]; then
