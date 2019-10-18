@@ -99,6 +99,8 @@ alias notes='cd ~/repos/personal/kepler-notes/2019/projects'
 alias rearena='cd ~/repos/personal/re.are.na; source venv/bin/activate; make email'
 alias bat='bat -n'
 alias fh='history | fzf'
+alias bashrc='n ~/.bashrc'
+alias vimrc='n ~/.vimrc'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
