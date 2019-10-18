@@ -97,6 +97,9 @@ alias dockerdestroy='docker system prune -a; docker rmi $(docker images -a -q)'
 alias b='bpython3'
 alias notes='cd ~/repos/personal/kepler-notes/2019/projects'
 alias rearena='cd ~/repos/personal/re.are.na; source venv/bin/activate; make email'
+alias bat='bat -n'
+alias fn='n -o `fzf`'
+alias fh='history | fzf'
 
 if [ -f ~/.bash/sensitive ]; then
     . ~/.bash/sensitive
@@ -106,6 +109,10 @@ fi
 # the per1 step removes the final newline from the output
 alias pbcopy="per1 -pe 'chomp if eof' | xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
+
+fzf-down() {
+  fzf --height 50% "$@" --border
+}
 
 # reload bashrc
 so() {

@@ -73,6 +73,8 @@ Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'junegunn/rainbow_parentheses.vim' " lol
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+Plug 'junegunn/fzf.vim' " Vim-specific stuff for fzf
 
 " Plant UML
 Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
@@ -263,6 +265,9 @@ map <C-t> :NERDTreeToggle<CR>
 " open Goyo mode
 map <C-g> :Goyo <CR>
 
+" open FZF
+map <C-s> :FZF <CR>
+
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
@@ -311,4 +316,13 @@ let g:lightline = {
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf settings:
+let $FZF_DEFAULT_OPTS = '-m --bind ctrl-a:select-all,ctrl-d:deselect-all '
+      \ . '--preview "'
+      \ . '[[ $(file --mime {}) =~ binary ]] &&'
+      \ . 'echo {} is a binary file ||'
+      \ . '(bat --style=numbers --color=always {} || cat {})'
+      \ . '2> /dev/null | head -500"'
 
