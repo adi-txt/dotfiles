@@ -81,7 +81,6 @@ alias gd='git diff'
 alias gc='git commit -m'
 alias gl='git lgr'
 alias gpu='git pull'
-alias go='git checkout'
 alias vc='python3 -m venv venv'
 alias va='source venv/bin/activate'
 alias vd='deactivate'
@@ -154,6 +153,15 @@ echo -e $gitver
 ## Set Bash PS1
 PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_ORANGE\]\w "
 PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
+
+# if [ "$(branch_color)" = "${COLOR_GREEN}" ]; then
+#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]✔️ "
+# elif [ "$(branch_color)" = "${COLOR_RED}" ]; then
+#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]‼️ "
+# else
+#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
+# fi
+
 PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\u"
 PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n\n🤔🤔🤔  \[$COLOR_RESET\]"
 PS1="${PS1_USR} ${PS1_DIR}\
@@ -229,6 +237,9 @@ git config --global color.diff.commit     "yellow bold"
 git config --global color.diff.old        "red bold"
 git config --global color.diff.new        "green bold"
 git config --global color.diff.whitespace "red reverse"
+
+# bat config
+export BAT_THEME='zenburn'
 
 # Make sure you're also exporting PATH somewhere...
 export PATH="$HOME/.nodenv/bin:$PATH"
