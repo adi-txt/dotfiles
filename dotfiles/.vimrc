@@ -57,6 +57,7 @@ Plug 'wincent/terminus' " Enhanced terminal integration
 Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'PyCQA/pyflakes' " Python testing
 Plug 'scrooloose/nerdtree' " file system explorer
+Plug 'ryanoasis/vim-devicons' " dev icons
 
 " Markdown plugins
 Plug 'godlygeek/tabular' " Markdown plugin
@@ -319,7 +320,7 @@ let g:vim_markdown_new_list_item_indent = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fzf settings:
-let $FZF_DEFAULT_OPTS = '-m --bind ctrl-a:select-all,ctrl-d:deselect-all '
+let $FZF_DEFAULT_OPTS = '-m '
       \ . '--preview "'
       \ . '[[ $(file --mime {}) =~ binary ]] &&'
       \ . 'echo {} is a binary file ||'
@@ -327,5 +328,36 @@ let $FZF_DEFAULT_OPTS = '-m --bind ctrl-a:select-all,ctrl-d:deselect-all '
       \ . '2> /dev/null | head -500"'
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'down': '~50%' }
 
+function! s:fzf_edit_file(items)
+  let items = a:items
+  let i = 1
+  let ln = len(items)
+  while i < ln
+    let item = items[i]
+    let parts = split(item, ' ')
+    let file_path = get(parts, 1, '')
+    let items[i] = file_path
+    let i += 1
+  endwhile
+  call s:Sink(items)
+endfunction
+
+function! FzfWithDevIcons(command, preview)
+  let l:fzf_files_options = ' -m --bind ctrl-n:preview-page-down,ctrl-p:preview-page-up --preview "'.a:preview.'"'
+  let opts = fzf#wrap({})
+  let opts.source = a:command.'| devicon-lookup'
+  let s:Sink = opts['sink*']
+  let opts['sink*'] = function('s:fzf_edit_file')
+  let opts.options .= l:fzf_files_options
+  call fzf#run(opts)
+endfunction
+
+function! FzfFiles()
+  let l:fzf_preview = $FZF_DEFAULT_OPTS
+  let l:fzf_command = $FZF_DEFAULT_COMMAND
+  call FzfWithDevIcons(l:fzf_command, l:fzf_preview)
+endfunction
+
+nnoremap <C-p> :call FzfFiles()<CR>
