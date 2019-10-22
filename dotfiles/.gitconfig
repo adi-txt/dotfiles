@@ -1,6 +1,6 @@
 [user]
-	email = adithya.met92@gmail.com
-	name = adi-txt
+	email = adidottxt@gmail.com
+	name = adidottxt
 [core]
 	editor = nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
