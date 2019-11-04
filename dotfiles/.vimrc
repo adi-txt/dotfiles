@@ -136,6 +136,9 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
     \ 'svelte': ['svelteserver'],
     \ }
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_hoverPreview = 'Auto'
+let g:LanguageClient_diagnosticsEnable = 0
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
