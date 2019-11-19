@@ -59,6 +59,7 @@ Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'PyCQA/pyflakes' " Python testing
 Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'ryanoasis/vim-devicons' " dev icons
+Plug 'psliwka/vim-smoothie' " smooth scrollin'
 
 " Markdown plugins
 Plug 'godlygeek/tabular' " Markdown plugin
