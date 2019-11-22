@@ -123,12 +123,12 @@ so() {
 
 ############################################
 # Colors
-COLOR_LIGHT_BLUE="\033[38;5;86m"
-COLOR_LIGHT_ORANGE="\033[38;5;215m"
+COLOR_LIGHT_GREEN="\033[38;5;73m"
+COLOR_LIGHT_YELLOW="\033[38;5;222m"
 COLOR_RESET="\033[0m"
 BOLD="$(tput bold)"
-COLOR_RED=`tput setaf 1`
-COLOR_GREEN=`tput setaf 2`
+COLOR_RED=`tput setaf 174`
+COLOR_GREEN=`tput setaf 65`
 c_sgr0=`tput sgr0`
 
 # helper function for branch color
@@ -138,9 +138,9 @@ branch_color() {
         color=""
         if git diff --quiet 2>/dev/null >&2
         then
-            color=${COLOR_GREEN}
+            color=$COLOR_GREEN
         else
-            color=${COLOR_RED}
+            color=$COLOR_RED
         fi
     else
         return 0
@@ -160,19 +160,11 @@ echo -e $gitver
 }
 
 ## Set Bash PS1
-PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_ORANGE\]\w "
+PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_YELLOW\]\w "
 PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
 
-# if [ "$(branch_color)" = "${COLOR_GREEN}" ]; then
-#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]✔️ "
-# elif [ "$(branch_color)" = "${COLOR_RED}" ]; then
-#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]‼️ "
-# else
-#   PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
-# fi
-
-PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\u"
-PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n\n🤔🤔🤔  \[$COLOR_RESET\]"
+PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_GREEN\]\u"
+PS1_END="\[$BOLD\]\[$COLOR_LIGHT_GREEN\]\n\n🤔🤔🤔  \[$COLOR_RESET\]"
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
 
