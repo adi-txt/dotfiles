@@ -71,6 +71,10 @@ Plug 'iamcco/markdown-preview.nvim', {
       \ 'on': 'MarkdownPreview'
       \ }
 
+" Jenkinsfile syntax
+Plug 'vim-scripts/groovyindent-unix'
+Plug 'martinda/Jenkinsfile-vim-syntax'
+
 " Shoutout @junegunn
 Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
 Plug 'junegunn/goyo.vim' " Distraction-free writing
