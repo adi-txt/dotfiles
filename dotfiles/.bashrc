@@ -162,50 +162,10 @@ echo -e $gitver
 ## Set Bash PS1
 PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_YELLOW\]\w "
 PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
-
 PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\u"
-PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n\n🤔🤔🤔  \[$COLOR_RESET\]"
+PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\[$COLOR_RESET\]"
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
-
-#######################
-
-# Bash-it Brunton theme to be edited at some point
-
-# SCM_THEME_PROMPT_PREFIX=""
-# SCM_THEME_PROMPT_SUFFIX=""
-#
-# SCM_THEME_PROMPT_DIRTY=" ${bold_red}✗${normal}"
-# SCM_THEME_PROMPT_CLEAN=" ${bold_green}✓${normal}"
-# SCM_GIT_CHAR="${bold_green}±${normal}"
-# SCM_SVN_CHAR="${bold_cyan}⑆${normal}"
-# SCM_HG_CHAR="${bold_red}☿${normal}"
-#
-# is_vim_shell() {
-# 	if [ ! -z "$VIMRUNTIME" ]
-# 	then
-# 		echo "[${cyan}vim shell${normal}]"
-# 	fi
-# }
-#
-# scm_prompt() {
-# 	CHAR=$(scm_char)
-# 	if [ $CHAR = $SCM_NONE_CHAR ]
-# 	then
-# 		return
-# 	else
-# 		echo " $(scm_char) (${white}$(scm_prompt_info)${normal})"
-# 	fi
-# }
-#
-# prompt() {
-#   PS1="${white}${background_blue} \u${normal}${background_blue}@${red}${background_blue}\h $(clock_prompt) ${reset_color}${normal} $(battery_charge)\n${bold_black}${background_white} \w ${normal}$(scm_prompt)$(is_vim_shell)\n${white}>${normal} "
-# }
-#
-# THEME_CLOCK_COLOR=${THEME_CLOCK_COLOR:-"$blue$background_white"}
-# THEME_CLOCK_FORMAT=${THEME_CLOCK_FORMAT:-" %H:%M:%S"}
-#
-# safe_append_prompt_command prompt
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -224,7 +184,6 @@ export LSCOLORS=GxFxCxDxBxegedabagaced
 export LS_COLORS=$LS_COLORS:'ln=\e[38;2;95;135;95;1'
 export LS_COLORS=$LS_COLORS:'di=\e[38;2;95;175;175;1'
 export LS_COLORS=$LS_COLORS:'ex=\e[38;2;215;135;95;1'
-# export LS_COLORS=$LS_COLORS:'di=\e[38;2;95;95;175;1'
 
 # bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
