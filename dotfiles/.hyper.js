@@ -29,7 +29,8 @@ module.exports = {
     // letter spacing as a relative unit
     letterSpacing: 0,
 
-    // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
+    // terminal cursor background color and opacity
+    // (hex, rgb, hsl, hsv, hwb or cmyk)
     cursorColor: 'rgb(255,215,135, 0.8)',
 
     // terminal text color under BLOCK cursor
@@ -64,9 +65,12 @@ module.exports = {
     // default: `true` on Linux, `true` on Windows, ignored on macOS
     showHamburgerMenu: true,
 
-    // set to `false` (without backticks and without quotes) if you want to hide the minimize, maximize and close buttons
-    // additionally, set to `'left'` if you want them on the left, like in Ubuntu
-    // default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS
+    // set to `false` (without backticks and without quotes) if you want to
+    // hide the minimize, maximize and close buttons
+    // additionally, set to `'left'` if you want them on the left,
+    // like in Ubuntu
+    // default: `true` (without backticks and without quotes) on Windows
+    // and Linux, ignored on macOS
     showWindowControls: '',
 
     // custom padding (CSS format, i.e.: `top right bottom left`)
@@ -118,18 +122,22 @@ module.exports = {
     // set to `false` for no bell
     bell: 'SOUND',
 
-    // if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard
+    // if `true` (without backticks and without quotes), selected text will
+    // automatically be copied to the clipboard
     copyOnSelect: false,
 
-    // if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH
+    // if `true` (without backticks and without quotes), hyper will be set as
+    // the default protocol client for SSH
     defaultSSHApp: true,
 
-    // if `true` (without backticks and without quotes), on right click selected text will be copied or pasted if no
-    // selection is present (`true` by default on Windows and disables the context menu feature)
+    // if `true` (without backticks and without quotes), on right click
+    // selected text will be copied or pasted if no selection is present
+    // (`true` by default on Windows and disables the context menu feature)
     quickEdit: false,
 
-    // choose either `'vertical'`, if you want the column mode when Option key is hold during selection (Default)
-    // or `'force'`, if you want to force selection regardless of whether the terminal is in mouse events mode
+    // choose either `'vertical'`, if you want the column mode when Option key
+    // is hold during selection (Default) or `'force'`, if you want to force
+    // selection regardless of whether the terminal is in mouse events mode
     // (inside tmux or vim with mouse mode enabled for example).
     macOptionSelectionMode: 'vertical',
 
