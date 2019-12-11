@@ -27,7 +27,7 @@ module.exports = {
     letterSpacing: 0,
 
     // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'rgba(248,28,229,0.8)',
+    cursorColor: 'rgb(255,215,135, 0.8)',
 
     // terminal text color under BLOCK cursor
     cursorAccentColor: '#000',
@@ -149,7 +149,7 @@ module.exports = {
   plugins: [
     'hyper-search',
     'hyperterm-paste',
-    'hyper-blink',
+    // 'hyperborder',
   ],
 
   // in development, you can create a directory under
