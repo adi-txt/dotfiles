@@ -160,6 +160,7 @@ module.exports = {
   plugins: [
     'hyper-search',
     'hyperterm-paste',
+    'hyperfullscreen',
     // 'hyperborder',
   ],
 
