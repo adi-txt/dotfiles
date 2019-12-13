@@ -164,6 +164,7 @@ PS1_DIR="\[$BOLD\]\[$COLOR_LIGHT_YELLOW\]\w "
 PS1_GIT="\[$BOLD\]\[\$(branch_color)\]\[$BOLD\]\$(git_branch)\[$COLOR_RESET\]"
 PS1_USR="\n\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\u"
 PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n🌊   \[$COLOR_RESET\]"
+
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
 

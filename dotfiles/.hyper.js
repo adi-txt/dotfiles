@@ -11,9 +11,6 @@ module.exports = {
     // default font size in pixels for all tabs
     fontSize: 15,
 
-    // default window size so I'm not zooming in each time
-    windowSize: [210, 54],
-
     // font family with optional fallbacks
     fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
 
@@ -160,7 +157,6 @@ module.exports = {
   plugins: [
     'hyper-search',
     'hyperterm-paste',
-    'hyperfullscreen',
     // 'hyperborder',
   ],
 
