@@ -120,6 +120,7 @@ Plug 'git@github.com:pappasam/typescript-vim.git', {
 
 call plug#end()
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TypeScript settings
 augroup typescript_syntax
@@ -127,17 +128,17 @@ augroup typescript_syntax
   autocmd ColorScheme * highlight link typescriptExceptions Conditional
 augroup end
 
-" Make sure Javascript files are actually Javascript. The new plugin
-" recognizes all files as Javascript
+" Make sure JS files are actually JS. The new plugin recognizes all files as JS
 autocmd BufNewFile,BufRead,BufEnter *.jsx,*.js set filetype=javascript
 
 " Fix 'comments' for typescript. Fixes the >>>>> bug for generics.
 autocmd FileType typescript.tsx,typescript
       \ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+
 " If you want to keep vim-jsx-pretty, but use vim-jsx-typescript for
 " typescript.tsx:
-"
 let g:vim_jsx_pretty_disable_tsx = v:true
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim filetype formatter settings
@@ -245,6 +246,7 @@ augroup javascript_folding
     au!
     au FileType javascript setlocal foldmethod=syntax
 augroup END
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preview wrapper function for Plant UML and Markdown:
