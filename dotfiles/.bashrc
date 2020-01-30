@@ -207,6 +207,7 @@ git config --global color.diff.whitespace "red reverse"
 export BAT_THEME='zenburn'
 
 # Make sure you're also exporting PATH somewhere...
+export PATH=$PATH:~/bin
 export PATH="$HOME/.nodenv/bin:$PATH"
 export PATH=~/.local/bin:$PATH
 

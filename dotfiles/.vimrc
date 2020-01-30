@@ -95,10 +95,9 @@ Plug 'hdima/python-syntax' " Python syntax highlighting
 Plug 'evanleck/vim-svelte' " Svelte syntax highlighting
 Plug 'rust-lang/rust.vim' " Rust syntax highlighting
 Plug 'aklt/plantuml-syntax' " Plant UML syntax highlighting
-Plug 'chr4/nginx.vim' " Nginx syntax highlighting
-Plug 'maxmellon/vim-jsx-pretty' " jsx syntax highlighting
 Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript' " Jsx in Typescript syntax highlighting
+Plug 'MaxMEllon/vim-jsx-pretty' " Jsx styling
 
 " Autocompletion
 Plug 'autozimu/LanguageClient-neovim', {
@@ -112,10 +111,33 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
 let g:deoplete#enable_at_startup = 1
+
+Plug 'git@github.com:pappasam/typescript-vim.git', {
+    \ 'branch': 'INDENT_CORRECTLY_MULTILINE_GENERICS',
+    \ }
 
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TypeScript settings
+augroup typescript_syntax
+  autocmd!
+  autocmd ColorScheme * highlight link typescriptExceptions Conditional
+augroup end
+
+" Make sure Javascript files are actually Javascript. The new plugin
+" recognizes all files as Javascript
+autocmd BufNewFile,BufRead,BufEnter *.jsx,*.js set filetype=javascript
+
+" Fix 'comments' for typescript. Fixes the >>>>> bug for generics.
+autocmd FileType typescript.tsx,typescript
+      \ setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+" If you want to keep vim-jsx-pretty, but use vim-jsx-typescript for
+" typescript.tsx:
+"
+let g:vim_jsx_pretty_disable_tsx = v:true
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim filetype formatter settings
@@ -284,20 +306,6 @@ map <C-a> :ALEToggle <CR>
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
-
-" We'll see how long this lasts
-" nnoremap <Up> <nop>
-" nnoremap <Down> <nop>
-" nnoremap <Left> <nop>
-" nnoremap <Right> <nop>
-" inoremap <Up> <nop>
-" inoremap <Down> <nop>
-" inoremap <Left> <nop>
-" inoremap <Right> <nop>
-" vnoremap <Up> <nop>
-" vnoremap <Down> <nop>
-" vnoremap <Left> <nop>
-" vnoremap <Right> <nop>
 
 " Set up preview command
 nmap <silent><leader>p :PreviewCmd<CR>
