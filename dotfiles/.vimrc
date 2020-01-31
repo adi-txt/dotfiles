@@ -13,7 +13,6 @@ set incsearch " search as characters are entered
 set noswapfile " avoid swap files
 set nobackup " avoid swap files
 set showmatch " highlight matching
-set textwidth=80 " set text width to be no larger than 80
 
 " Set column to light grey at 80 characters
 if (exists('+colorcolumn'))
@@ -312,6 +311,16 @@ inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Set up preview command
 nmap <silent><leader>p :PreviewCmd<CR>
 
+" Move up and down visually -- useful for Markdown, eliminates need for hard
+" line wrapping with text width
+nnoremap <expr> <Up>
+        \ v:count == 0 ? 'g<Up>' : '<Up>'
+vnoremap <expr> <Up>
+      \ v:count == 0 ? 'g<Up>' : '<Up>'
+nnoremap <expr> <Down>
+      \ v:count == 0 ? 'g<Down>' : '<Down>'
+vnoremap <expr> <Down>
+      \ v:count == 0 ? 'g<Down>' : '<Down>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Seoul256 Settings:
@@ -383,3 +392,4 @@ function! FzfFiles()
 endfunction
 
 nnoremap <C-p> :call FzfFiles()<CR>
+
