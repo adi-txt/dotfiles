@@ -98,26 +98,26 @@ Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript' " Jsx in Typescript syntax highlighting
 Plug 'MaxMEllon/vim-jsx-pretty' " Jsx styling
 
-" Autocompletion
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-let g:deoplete#enable_at_startup = 1
-
+" Fix Typescript syntax highlighting issues
 Plug 'git@github.com:pappasam/typescript-vim.git', {
     \ 'branch': 'INDENT_CORRECTLY_MULTILINE_GENERICS',
     \ }
 
+" COC stuff
+Plug 'neoclide/coc.nvim', { 'branch': 'release'}
+
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COC config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-json',
+  \ 'coc-python',
+  \ ]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,29 +149,6 @@ let g:vim_filetype_formatter_commands = {
 
 " Required for operations modifying multiple buffers like rename
 set hidden
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Language client settings
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ 'typescript': ['npx', 'typescript-language-server', '--stdio'],
-    \ 'typescript.tsx': ['npx', 'typescript-language-server', '--stdio'],
-    \ 'svelte': ['svelteserver'],
-    \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_hoverPreview = 'Auto'
-let g:LanguageClient_diagnosticsEnable = 0
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
