@@ -1,4 +1,3 @@
-
 syntax on
 set tabstop=2 " tab length
 set softtabstop=2 " tab length
@@ -42,23 +41,23 @@ augroup END
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Formatting
-Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
-Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
-Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
-Plug 'hynek/vim-python-pep8-indent' "python indentation
-Plug 'Yggdroot/indentLine' "indentation
 Plug 'w0rp/ale' " Asynchronous linter
+Plug 'Yggdroot/indentLine' "indentation
+Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
 Plug 'pappasam/vim-filetype-formatter' " text formatter
+Plug 'hynek/vim-python-pep8-indent' "python indentation
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
+Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
+Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
 
 " Other
-Plug 'mhinz/vim-startify' " Fancy start screen
-Plug 'wincent/terminus' " Enhanced terminal integration
-Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'PyCQA/pyflakes' " Python testing
-Plug 'scrooloose/nerdtree' " file system explorer
 Plug 'ryanoasis/vim-devicons' " dev icons
 Plug 'psliwka/vim-smoothie' " smooth scrollin'
+Plug 'mhinz/vim-startify' " Fancy start screen
+Plug 'henrik/vim-indexed-search' " Indexed search
+Plug 'scrooloose/nerdtree' " file system explorer
+Plug 'wincent/terminus' " Enhanced terminal integration
 
 " Markdown plugins
 Plug 'godlygeek/tabular' " Markdown plugin
@@ -75,28 +74,28 @@ Plug 'vim-scripts/groovyindent-unix'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Shoutout @junegunn
-Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
-Plug 'junegunn/goyo.vim' " Distraction-free writing
-Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'junegunn/rainbow_parentheses.vim' " lol
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+Plug 'junegunn/seoul256.vim' " Seoul color scheme
+Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/fzf.vim' " Vim-specific stuff for fzf
+Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
 
 " Plant UML
 Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
 Plug 'tyru/open-browser.vim' " Direct dependency of plantuml-previewer.vim
 
 " Syntax highlighting
+Plug 'MaxMEllon/vim-jsx-pretty' " Jsx styling
 Plug 'vim-syntastic/syntastic' " Syntax checker
-Plug 'pangloss/vim-javascript' " JS syntax highlighting
 Plug 'lervag/vimtex' " LaTeX syntax highlighting
+Plug 'rust-lang/rust.vim' " Rust syntax highlighting
+Plug 'pangloss/vim-javascript' " JS syntax highlighting
 Plug 'hdima/python-syntax' " Python syntax highlighting
 Plug 'evanleck/vim-svelte' " Svelte syntax highlighting
-Plug 'rust-lang/rust.vim' " Rust syntax highlighting
 Plug 'aklt/plantuml-syntax' " Plant UML syntax highlighting
 Plug 'leafgarland/typescript-vim' " Typescript syntax highlighting
 Plug 'peitalin/vim-jsx-typescript' " Jsx in Typescript syntax highlighting
-Plug 'MaxMEllon/vim-jsx-pretty' " Jsx styling
 
 " Fix Typescript syntax highlighting issues
 Plug 'git@github.com:pappasam/typescript-vim.git', {
@@ -111,12 +110,12 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC config
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-eslint',
   \ 'coc-json',
+  \ 'coc-pairs',
+  \ 'coc-eslint',
   \ 'coc-python',
+  \ 'coc-snippets',
+  \ 'coc-tsserver',
   \ ]
 
 
@@ -168,10 +167,10 @@ autocmd! User GoyoLeave Limelight!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Bullets.vim settings
 let g:bullets_enabled_file_types = [
-    \ 'markdown',
     \ 'text',
+    \ 'scratch',
+    \ 'markdown',
     \ 'gitcommit',
-    \ 'scratch'
     \]
 
 
@@ -201,8 +200,8 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python: settings
 " highlighting
-let g:python_highlight_space_errors = 0
 let g:python_highlight_all = 1
+let g:python_highlight_space_errors = 0
 
 " Highlight self and cls keyword in class definitions
 augroup python_syntax
@@ -214,9 +213,9 @@ augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JavaScript: plugin edits
+let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
 
 augroup javascript_folding
     au!
@@ -240,16 +239,16 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commands:
 command! W :w " make it easier to save
-command! Wq :wq " make it easier to save and quit
 command! Q :q " make it easier to quit
+command! Wq :wq " make it easier to save and quit
 command! Preview call _Preview() " make it easier to preview files
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings:
 " Set up Alt+Left and Alt+Right to move between tabs
-nnoremap <A-Left> :tabprevious<CR>
 nnoremap <A-Right> :tabnext<CR>
+nnoremap <A-Left> :tabprevious<CR>
 
 " Set up TAB to move between tabs
 noremap <TAB> <C-W>w
@@ -369,4 +368,3 @@ function! FzfFiles()
 endfunction
 
 nnoremap <C-p> :call FzfFiles()<CR>
-
