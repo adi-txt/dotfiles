@@ -38,6 +38,7 @@ augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins:
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Formatting
@@ -52,11 +53,11 @@ Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
 
 " Other
 Plug 'PyCQA/pyflakes' " Python testing
-Plug 'ryanoasis/vim-devicons' " dev icons
 Plug 'psliwka/vim-smoothie' " smooth scrollin'
 Plug 'mhinz/vim-startify' " Fancy start screen
 Plug 'henrik/vim-indexed-search' " Indexed search
 Plug 'scrooloose/nerdtree' " file system explorer
+Plug 'scrooloose/nerdcommenter' " testing comments
 Plug 'wincent/terminus' " Enhanced terminal integration
 
 " Markdown plugins
@@ -107,8 +108,10 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 
 call plug#end()
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COC config
+" COC Config:
+
 let g:coc_global_extensions = [
   \ 'coc-rls',
   \ 'coc-css',
@@ -127,7 +130,8 @@ let g:coc_global_extensions = [
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TypeScript settings
+" TypeScript Settings:
+
 augroup typescript_syntax
   autocmd!
   autocmd ColorScheme * highlight link typescriptExceptions Conditional
@@ -144,9 +148,15 @@ autocmd FileType typescript.tsx,typescript
 " typescript.tsx:
 let g:vim_jsx_pretty_disable_tsx = v:true
 
+augroup tsx_recognition
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+augroup END
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim filetype formatter settings
+" Vim Filetype Formatter Settings:
+
 let g:vim_filetype_formatter_commands = {
       \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
@@ -158,21 +168,26 @@ set hidden
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree settings
-" nerdtree auto-open when no file is specified with vim
+" NERDTree Settings:
+
+" Nerdtree auto-open when no file is specified with vim
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Goyo.vim settings
+" Markdown Settings:
+
+augroup Markdown
+  autocmd!
+  autocmd Filetype markdown set wrap linebreak nolist
+augroup END
+
 " Goyo Limelight integration
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Bullets.vim settings
+" Bullets.vim Settings:
 let g:bullets_enabled_file_types = [
     \ 'text',
     \ 'scratch',
@@ -182,18 +197,8 @@ let g:bullets_enabled_file_types = [
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other group settings
-augroup Markdown
-  autocmd!
-  autocmd Filetype markdown set wrap linebreak nolist
-augroup END
-
-augroup tsx_recognition
-  autocmd!
-  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-augroup END
-
 " Rainbow Parentheses:
+
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 augroup rainbow_settings
@@ -205,7 +210,8 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python: settings
+" Python Settings:
+
 " highlighting
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors = 0
@@ -219,7 +225,9 @@ augroup end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JavaScript: plugin edits
+" JavaScript Settings:
+
+" plugin edits
 let g:javascript_plugin_flow = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -231,7 +239,8 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Preview wrapper function for Plant UML and Markdown:
+" Preview Helper Function:
+
 function! _Preview()
   if &filetype ==? 'plantuml'
     exec 'PlantumlOpen'
@@ -244,7 +253,8 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands:
+" Custom Commands:
+
 command! W :w " make it easier to save
 command! Q :q " make it easier to quit
 command! Wq :wq " make it easier to save and quit
@@ -253,6 +263,7 @@ command! Preview call _Preview() " make it easier to preview files
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings:
+
 " Set up Alt+Left and Alt+Right to move between tabs
 nnoremap <A-Right> :tabnext<CR>
 nnoremap <A-Left> :tabprevious<CR>
@@ -305,8 +316,14 @@ nnoremap <expr> <Down>
 vnoremap <expr> <Down>
       \ v:count == 0 ? 'g<Down>' : '<Down>'
 
+" Nerdcommenter toggle
+vmap <C-c> <plug>NERDCommenterToggle
+nmap <C-c> <plug>NERDCommenterToggle
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Seoul256 Settings:
+
 try
   set t_Co=256 " says terminal has 256 colors
   " Unified color scheme (default: dark)
@@ -320,6 +337,7 @@ endtry
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lightline Settings:
+
 " Color theme to match vim theme
 let g:lightline = {
       \ 'colorscheme': 'seoul256',
@@ -328,12 +346,14 @@ let g:lightline = {
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Markdown Settings:
+
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fzf settings:
+" Fzf Custom Function:
+
 let $FZF_DEFAULT_OPTS = '-m '
       \ . '--preview "'
       \ . '[[ $(file --mime {}) =~ binary ]] &&'
