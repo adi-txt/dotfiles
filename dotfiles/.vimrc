@@ -110,12 +110,19 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC config
 let g:coc_global_extensions = [
+  \ 'coc-rls',
+  \ 'coc-css',
   \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-yaml',
+  \ 'coc-yank',
   \ 'coc-pairs',
+  \ 'coc-lists',
   \ 'coc-eslint',
   \ 'coc-python',
   \ 'coc-snippets',
   \ 'coc-tsserver',
+  \ 'coc-highlight',
   \ ]
 
 
