@@ -201,6 +201,7 @@ let g:bullets_enabled_file_types = [
 
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
 augroup rainbow_settings
   " Section to turn on rainbow parentheses
   autocmd!
