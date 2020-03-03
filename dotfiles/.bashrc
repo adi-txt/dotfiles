@@ -168,8 +168,6 @@ PS1_END="\[$BOLD\]\[$COLOR_LIGHT_BLUE\]\n🌊   \[$COLOR_RESET\]"
 PS1="${PS1_USR} ${PS1_DIR}\
 ${PS1_GIT} ${PS1_END}"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 #PYENV installation
 PYENV_ROOT="$HOME/.pyenv"
 if [ -d "$PYENV_ROOT" ]
@@ -188,6 +186,7 @@ export LS_COLORS=$LS_COLORS:'ex=\e[38;2;215;135;95;1'
 
 # bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # git diff configuration
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
@@ -215,3 +214,4 @@ export PATH=~/.local/bin:$PATH
 . $HOME/.asdf/completions/asdf.bash
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+

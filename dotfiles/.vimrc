@@ -1,17 +1,17 @@
 syntax on
-set tabstop=2 " tab length
-set softtabstop=2 " tab length
-set shiftwidth=2 " shift length
-set showtabline=2 " show tab dif
-set expandtab " spaces are tabs
 set number " line numbers
-set cursorline " highlight current line
+set tabstop=2 " tab length
 set nowrap " remove auto wrap
+set softtabstop=2 " tab length
 set hlsearch " highlight search
-set incsearch " search as characters are entered
-set noswapfile " avoid swap files
 set nobackup " avoid swap files
+set shiftwidth=2 " shift length
+set expandtab " spaces are tabs
+set showtabline=2 " show tab dif
+set noswapfile " avoid swap files
 set showmatch " highlight matching
+set cursorline " highlight current line
+set incsearch " search as characters are entered
 
 " Set column to light grey at 80 characters
 if (exists('+colorcolumn'))
@@ -22,9 +22,9 @@ endif
 " Indentation settings
 augroup indentation
   autocmd!
-  autocmd Filetype * setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=8
-  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=8
   autocmd Filetype yaml setlocal indentkeys-=<:>
+  autocmd Filetype python setlocal shiftwidth=4 softtabstop=4 tabstop=8
+  autocmd Filetype * setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=8
 augroup END
 
 " Search result highlighting
@@ -80,7 +80,7 @@ Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/fzf.vim' " Vim-specific stuff for fzf
 Plug 'junegunn/limelight.vim' " highlight text (for Goyo)
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy finder
 
 " Plant UML
 Plug 'weirongxu/plantuml-previewer.vim' " Preview Plant UML diagrams
@@ -158,8 +158,8 @@ augroup END
 " Vim Filetype Formatter Settings:
 
 let g:vim_filetype_formatter_commands = {
-      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
+      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
       \ }
 
@@ -300,7 +300,6 @@ map <C-a> :ALEToggle <CR>
 
 " Autocompletion popup navigation
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr> <C-r> pumvisible() ? "\<C-p>" : "\<C-r>"
 
 " Set up preview command
 nmap <silent><leader>p :PreviewCmd<CR>
@@ -319,6 +318,11 @@ vnoremap <expr> <Down>
 " Nerdcommenter toggle
 vmap <C-c> <plug>NERDCommenterToggle
 nmap <C-c> <plug>NERDCommenterToggle
+
+" coc.nvim key bindings
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
