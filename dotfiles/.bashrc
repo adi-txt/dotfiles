@@ -82,8 +82,8 @@ alias gd='git diff'
 alias gc='git commit -m'
 alias gl='git lgr'
 alias gpu='git pull'
-alias vc='python3 -m venv venv'
-alias va='source venv/bin/activate'
+alias vc='python3 -m venv .venv'
+alias va='source .venv/bin/activate'
 alias vd='deactivate'
 alias pr='pip install -r requirements.txt'
 alias pu='pip install --upgrade pip'
@@ -214,4 +214,5 @@ export PATH=~/.local/bin:$PATH
 . $HOME/.asdf/completions/asdf.bash
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
