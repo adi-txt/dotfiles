@@ -45,7 +45,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'w0rp/ale' " Asynchronous linter
 Plug 'Yggdroot/indentLine' "indentation
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
-Plug 'pappasam/vim-filetype-formatter' " text formatter
 Plug 'hynek/vim-python-pep8-indent' "python indentation
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
@@ -75,7 +74,6 @@ Plug 'vim-scripts/groovyindent-unix'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 " Shoutout @junegunn
-Plug 'junegunn/rainbow_parentheses.vim' " lol
 Plug 'junegunn/seoul256.vim' " Seoul color scheme
 Plug 'junegunn/goyo.vim' " Distraction-free writing
 Plug 'junegunn/fzf.vim' " Vim-specific stuff for fzf
@@ -155,19 +153,6 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Filetype Formatter Settings:
-
-let g:vim_filetype_formatter_commands = {
-      \ 'typescript': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ 'javascript.jsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ 'typescript.tsx': g:filetype_formatter#ft#formatters['javascript']['prettier'],
-      \ }
-
-" Required for operations modifying multiple buffers like rename
-set hidden
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree Settings:
 
 " Nerdtree auto-open when no file is specified with vim
@@ -194,20 +179,6 @@ let g:bullets_enabled_file_types = [
     \ 'markdown',
     \ 'gitcommit',
     \]
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Rainbow Parentheses:
-
-let g:rainbow#max_level = 16
-let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-
-augroup rainbow_settings
-  " Section to turn on rainbow parentheses
-  autocmd!
-  autocmd BufEnter,BufRead * :RainbowParentheses
-  autocmd BufEnter,BufRead *.html,*.css,*.jsx,*.js :RainbowParentheses!
-augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
