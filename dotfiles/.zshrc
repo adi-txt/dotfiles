@@ -6,15 +6,16 @@ ZSH_THEME="spaceship"
 # Spaceship customizations; all colors are low contrast on purpose
 SPACESHIP_DIR_COLOR="73" # blue
 SPACESHIP_CHAR_COLOR_SUCCESS="65" # green
+
 SPACESHIP_GIT_BRANCH_COLOR="179" # orange
 
 SPACESHIP_GIT_STATUS_COLOR="173" # red
 SPACESHIP_DIR_LOCK_COLOR="173" # red
 SPACESHIP_CHAR_COLOR_FAILURE="173" # red
+SPACESHIP_TIME_COLOR="173" # red
 
 SPACESHIP_VENV_COLOR="228" # yellow
 SPACESHIP_CHAR_COLOR_SECONDARY="228" # yellow
-SPACESHIP_TIME_COLOR="228" # yellow
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
