@@ -125,6 +125,7 @@ alias zshrc='n ~/.zshrc'
 alias so='source ~/.zshrc'
 alias bashrc='n ~/.bashrc'
 alias vimrc='n ~/.vimrc'
+alias ds='rm -rf .DS_Store'
 
 # Enabling global terminal colors on macosx
 export CLICOLOR=1
