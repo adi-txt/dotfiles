@@ -42,13 +42,13 @@ augroup END
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Formatting
-Plug 'w0rp/ale' " Asynchronous linter
 Plug 'Yggdroot/indentLine' "indentation
 Plug 'Townk/vim-autoclose' " Autoclose brackets, etc.
 Plug 'hynek/vim-python-pep8-indent' "python indentation
 Plug 'machakann/vim-highlightedyank' " make yanked region apparent
 Plug 'itchyny/lightline.vim' " Status line / tab line plugin for Vim
 Plug 'bronson/vim-trailing-whitespace' " Trailing whitespace highlighted
+Plug 'pappasam/vim-filetype-formatter' " for black
 
 " Other
 Plug 'PyCQA/pyflakes' " Python testing
@@ -117,10 +117,10 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-yaml',
   \ 'coc-yank',
-  \ 'coc-jedi',
   \ 'coc-pairs',
   \ 'coc-lists',
   \ 'coc-eslint',
+  \ 'coc-python',
   \ 'coc-snippets',
   \ 'coc-tsserver',
   \ 'coc-highlight',
