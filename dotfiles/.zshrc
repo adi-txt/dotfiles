@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/adi/.oh-my-zsh"
+export ZSH="/home/adi/.oh-my-zsh"
 
 ZSH_THEME="spaceship"
 
@@ -159,3 +159,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fpath=($fpath "/home/adi/.zfunctions")
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship
+fpath=($fpath "/home/adi/.zfunctions")
