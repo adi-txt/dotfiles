@@ -17,6 +17,12 @@ SPACESHIP_TIME_COLOR="173" # red
 SPACESHIP_VENV_COLOR="228" # yellow
 SPACESHIP_CHAR_COLOR_SECONDARY="228" # yellow
 
+# ignore duplicates in history
+setopt HIST_IGNORE_DUPS
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
 
@@ -24,10 +30,7 @@ SPACESHIP_CHAR_COLOR_SECONDARY="228" # yellow
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -75,9 +78,6 @@ fi
 
 # set copy/paste helper functions
 # the per1 step removes the final newline from the output
-alias pbcopy="per1 -pe 'chomp if eof' | xsel --clipboard --input"
-alias pbpaste="xsel --clipboard --output"
-
 alias ll='ls -la'
 alias l='ls -CF'
 alias ,='cd ..'
